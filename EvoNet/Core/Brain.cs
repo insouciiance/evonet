@@ -7,7 +7,7 @@ namespace EvoNet.Core;
 
 public class Brain
 {
-    private const byte NEURON_ID_MASK = 0b01111111;
+    private const byte NEURON_ID_MASK = 0b00111111;
     
     public FrozenDictionary<byte, IInputNeuron> InputNeurons { get; init; }
     
@@ -15,27 +15,16 @@ public class Brain
     
     public FrozenDictionary<byte, IOutputNeuron> OutputNeurons { get; init; }
 
-    public INeuron GetSourceNeuron(byte id)
+    public INeuron GetNeuron(byte id)
     {
         byte neuronId = (byte)(id & NEURON_ID_MASK);
 
-        if ((id & ~NEURON_ID_MASK) == 0)
+        return (id & ~NEURON_ID_MASK) switch
         {
-            return InputNeurons[neuronId];
-        }
-        
-        return InternalNeurons[neuronId];
-    }
-
-    public INeuron GetTargetNeuron(byte id)
-    {
-        byte neuronId = (byte)(id & NEURON_ID_MASK);
-
-        if ((id & ~NEURON_ID_MASK) == 0)
-        {
-            return OutputNeurons[neuronId];
-        }
-        
-        return InternalNeurons[neuronId];
+            0 => InputNeurons[neuronId],
+            1 => InternalNeurons[neuronId],
+            2 => OutputNeurons[neuronId],
+            _ => throw new InvalidOperationException()
+        };
     }
 }

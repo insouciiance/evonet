@@ -2,5 +2,5 @@
 
 public struct Agent
 {
-    public Gene[] Genome;
+    public Genome Genome;
 }

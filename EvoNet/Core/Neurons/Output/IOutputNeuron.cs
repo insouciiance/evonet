@@ -2,5 +2,5 @@
 
 public interface IOutputNeuron : INeuron
 {
-    void Process(World world, Agent agent);
+    void Process(World world, Agent agent, float value);
 }
