@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Include="Neuron.fs" />
+      <Compile Include="Gene.fs" />
+      <Compile Include="Agent.fs" />
+      <Compile Include="World.fs" />
+      <Compile Include="InputNeurons.fs" />
+      <Compile Include="OutputNeurons.fs" />
+      <Compile Include="Neurons.fs" />
+      <Compile Include="Selection.fs" />
+      <Compile Include="Crossover.fs" />
+      <Compile Include="Mutation.fs" />
+      <Compile Include="Simulation.fs" />
+    </ItemGroup>
+
+</Project>
