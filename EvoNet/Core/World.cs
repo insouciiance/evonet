@@ -1,4 +1,5 @@
-﻿using Vector2I = (int X, int Y);
+﻿using System.Runtime.InteropServices;
+using Vector2I = (int X, int Y);
 
 namespace EvoNet.Core;
 
@@ -26,6 +27,11 @@ public class World
         }
     }
 
+    public ref Vector2I GetAgentPositionRef(Agent agent)
+    {
+        return ref CollectionsMarshal.GetValueRefOrNullRef(_agentPositions, agent);
+    }
+    
     public Vector2I GetAgentPosition(Agent agent)
     {
         return _agentPositions[agent];

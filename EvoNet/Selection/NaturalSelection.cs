@@ -20,6 +20,11 @@ public class NaturalSelection
         var children = CrossoverAgents(world, selectedAgents);
         
         MutateAgents(world, children);
+
+        foreach (var agent in world.Agents)
+        {
+            agent.Dispose();
+        }
         
         world.SetAgents(children.ToArray());
     }

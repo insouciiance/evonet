@@ -1,6 +1,11 @@
 ﻿namespace EvoNet.Core;
 
-public struct Agent
+public class Agent : IDisposable
 {
     public Genome Genome;
+
+    public void Dispose()
+    {
+        Genome.Dispose();
+    }
 }

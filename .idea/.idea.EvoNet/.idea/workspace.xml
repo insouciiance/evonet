@@ -8,12 +8,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="92d5d3e5-292d-4439-bc8f-542b869c1888" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/EvoNet.Sample/BitmapHelper.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EvoNet/Utils/MathHelper.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EvoNet/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EvoNet/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EvoNet.Sample/EvoNet.Sample.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet.Sample/EvoNet.Sample.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EvoNet.Sample/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet.Sample/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EvoNet/Core/Agent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet/Core/Agent.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EvoNet/Core/Brain.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet/Core/Brain.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EvoNet/Core/Gene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet/Core/Gene.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EvoNet/Core/Genome.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet/Core/Genome.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EvoNet/Core/Neurons/Output/MoveDownOutputNeuron.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet/Core/Neurons/Output/MoveDownOutputNeuron.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EvoNet/Core/Neurons/Output/MoveLeftOutputNeuron.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet/Core/Neurons/Output/MoveLeftOutputNeuron.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EvoNet/Core/Neurons/Output/MoveRightOutputNeuron.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet/Core/Neurons/Output/MoveRightOutputNeuron.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EvoNet/Core/Neurons/Output/MoveUpOutputNeuron.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet/Core/Neurons/Output/MoveUpOutputNeuron.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EvoNet/Core/World.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet/Core/World.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EvoNet/Generation/DefaultWorldGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet/Generation/DefaultWorldGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EvoNet/Selection/NaturalSelection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet/Selection/NaturalSelection.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EvoNet/Simulation/SimulationRunner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet/Simulation/SimulationRunner.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EvoNet/Utils/TopologicalSorting.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet/Utils/TopologicalSorting.cs" afterDir="false" />
     </list>
@@ -29,9 +37,16 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/827adbc471774c64a6a93658a5d3010ebb38/c3/f1150b4e/Vector`1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/0bfd576c98c28d94dbef12982e611ae658677d58103ceb54781591e32068f/Vector_1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3c92637ae2e83da0a63791071c41eae291d594156062866d8621b7ed7245c/CastHelpers.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/44563d38a322872121e651c22f2fdc519cd83cadc99435546166e2fdde347d3/Vector.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4e82e46177d77c1a179a154e6a12d5e0542fa4e428707c39377df75f8f1c4d/VectorMath.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5259d3b492565eee74334a7de8f55cbaac1fe860ecd250567891931a1ab5b7e/ArrayPool.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9773ace76e77820606135b8a7764a88f2666ca9f3cf4578f88273a9768bbe12/MathF.CoreCLR.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/aa74b2b4e9988ce29825f798c3ef4254a9bde18b81c60754798e520d5445a27/Span.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c7102cd0ffb8973777e61b1942c3fffac7e14016a511d055c3adf73ff91748/ThrowHelper.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e5d623ea960f2c3c9fda144954d339f8d4cd3dad6dd8bd4ab96093a010ab/Dictionary.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f21c449a23599e8691982940b5f094625d3f2924e0ae2daef346eb42831b3/Random.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e22bcf169adb524555a64f74392d7b4eba35ddbdb0126ae71bf1508fd2ce/Math.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -46,7 +61,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    ".NET Project.EvoNet.Sample.executor": "Debug",
+    ".NET Project.EvoNet.Sample.executor": "dotTrace Profiler",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
@@ -90,6 +105,8 @@
       <workItem from="1739745558576" duration="9475000" />
       <workItem from="1739834877550" duration="27000" />
       <workItem from="1739834954733" duration="8687000" />
+      <workItem from="1739910559451" duration="92000" />
+      <workItem from="1739910658823" duration="10371000" />
     </task>
     <servers />
   </component>
@@ -99,5 +116,24 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/EvoNet/Core/Genome.cs</url>
+          <line>35</line>
+          <properties documentPath="C:\Users\mykyt\source\repos\evonet\EvoNet\Core\Genome.cs" containingFunctionPresentation="Property 'OrderedNeurons'">
+            <startOffsets>
+              <option value="723" />
+            </startOffsets>
+            <endOffsets>
+              <option value="772" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

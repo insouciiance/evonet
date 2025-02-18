@@ -1,17 +1,20 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Buffers;
+using System.Runtime.InteropServices;
 using EvoNet.Utils;
 
 namespace EvoNet.Core;
 
-public class Genome
+public class Genome : IDisposable
 {
-    private Dictionary<byte, List<Gene>>? _graph;
+    private List<Gene>[]? _graph;
 
     private byte[]? _orderedNeurons;
+
+    private int _neuronsCount;
     
     public readonly Gene[] Genes;
 
-    public Dictionary<byte, List<Gene>> Graph
+    public List<Gene>[] Graph
     {
         get
         {
@@ -20,46 +23,59 @@ public class Genome
         }
     }
 
-    public byte[] OrderedNeurons
+    public Span<byte> OrderedNeurons
     {
         get
         {
-            _orderedNeurons ??= InitializeOrderedNeurons(Genes, Graph);
-            return _orderedNeurons;
+            if (_orderedNeurons is null)
+            {
+                _orderedNeurons = InitializeOrderedNeurons(Genes, Graph, out int neuronsCount);
+                _neuronsCount = neuronsCount;
+            }
+
+            return _orderedNeurons.AsSpan()[.._neuronsCount];
         }
     }
 
     public Genome(Gene[] genes)
     {
         Genes = genes;
-
     }
     
-    private static Dictionary<byte, List<Gene>> InitializeGraph(Gene[] genes)
+    public void Dispose()
     {
-        Dictionary<byte, List<Gene>> graph = [];
+        if (_graph is not null)
+        {
+            ArrayPool<List<Gene>>.Shared.Return(_graph, true);
+        }
+
+        if (_orderedNeurons is not null)
+        {
+            ArrayPool<byte>.Shared.Return(_orderedNeurons, true);
+        }
+    }
+    
+    private static List<Gene>[] InitializeGraph(Gene[] genes)
+    {
+        List<Gene>[] graph = ArrayPool<List<Gene>>.Shared.Rent(byte.MaxValue);
 
         foreach (var gene in genes)
         {
-            ref var to = ref CollectionsMarshal.GetValueRefOrAddDefault(graph, gene.Source, out bool exists);
-
-            if (!exists)
-            {
-                to = new();
-            }
-            
-            to!.Add(gene);
+            var outgoing = graph[gene.Source] ??= [];
+            outgoing.Add(gene);
         }
 
         return graph;
     }
 
-    private static byte[] InitializeOrderedNeurons(Gene[] genes, Dictionary<byte, List<Gene>> graph)
+    private static byte[] InitializeOrderedNeurons(Gene[] genes, List<Gene>[] graph, out int neuronsCount)
     {
         Span<byte> orderedNeurons = stackalloc byte[genes.Length * 2];
         
-        int neuronsCount = TopologicalSorting.Sort(genes, graph, orderedNeurons);
+        neuronsCount = TopologicalSorting.Sort(genes, graph, orderedNeurons);
         
-        return orderedNeurons[..neuronsCount].ToArray();
+        var resultArray = ArrayPool<byte>.Shared.Rent(neuronsCount);
+        orderedNeurons.CopyTo(resultArray);
+        return resultArray;
     }
 }

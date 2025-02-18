@@ -5,7 +5,7 @@ namespace EvoNet.Utils;
 
 public static class TopologicalSorting
 {
-    public static int Sort(Gene[] genes, Dictionary<byte, List<Gene>> graph, Span<byte> output)
+    public static int Sort(Gene[] genes, List<Gene>[] graph, Span<byte> output)
     {
         Dictionary<byte, int> inDegree = [];
 
@@ -37,7 +37,7 @@ public static class TopologicalSorting
             
             output[outputIndex++] = neuron;
 
-            if (!graph.TryGetValue(neuron, out var outgoing))
+            if (graph[neuron] is not { } outgoing)
             {
                 continue;
             }

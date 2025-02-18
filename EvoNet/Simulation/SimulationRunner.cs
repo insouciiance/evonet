@@ -3,6 +3,7 @@ using EvoNet.Core.Neurons;
 using EvoNet.Core.Neurons.Input;
 using EvoNet.Core.Neurons.Output;
 using EvoNet.Selection;
+using EvoNet.Utils;
 
 namespace EvoNet.Simulation;
 
@@ -43,62 +44,63 @@ public class SimulationRunner
 
     private void ProcessAgent(Agent agent)
     {
-        Dictionary<byte, float> neuronValues = [];
-
-        foreach (var id in agent.Genome.OrderedNeurons)
-        {
-            neuronValues[id] = 0;
-        }
+        Span<float> neuronValues = stackalloc float[byte.MaxValue];
         
         foreach (byte id in agent.Genome.OrderedNeurons)
         {
             var neuron = World.Brain.GetNeuron(id);
-            ProcessNeuron(id, neuron);
+            ProcessNeuron(id, neuron, neuronValues);
         }
 
-        void ProcessNeuron(byte id, INeuron neuron)
+        void ProcessNeuron(byte id, INeuron neuron, Span<float> neuronValues)
         {
-            if (neuron is IInputNeuron inputNeuron)
+            var prefix = World.Brain.GetNeuronPrefix(id);
+            
+            if (prefix == Brain.INPUT_NEURON_PREFIX)
             {
+                var inputNeuron = (IInputNeuron)neuron;
+                
                 float value = inputNeuron.Process(World, agent);
                 neuronValues[id] = value;
 
-                PropagateValue(value);
+                PropagateValue(value, neuronValues);
                 
                 return;
             }
 
-            if (neuron is InternalNeuron)
+            if (prefix == Brain.INTERNAL_NEURON_PREFIX)
             {
                 float value = neuronValues[id];
-                value = MathF.Tanh(value);
+                value = MathHelper.Tanh(value);
                 
-                PropagateValue(value);
+                PropagateValue(value, neuronValues);
                 
                 return;
             }
 
-            if (neuron is IOutputNeuron outputNeuron)
+            if (prefix == Brain.OUTPUT_NEURON_PREFIX)
             {
                 float value = neuronValues[id];
-                value = MathF.Tanh(value);
+                value = MathHelper.Tanh(value);
 
+                var outputNeuron = (IOutputNeuron)neuron;
+                
                 if (outputNeuron.ShouldActivate(value))
                 {
                     outputNeuron.Activate(World, agent, value);
                 }
             }
 
-            void PropagateValue(float value)
+            void PropagateValue(float value, Span<float> neuronValues)
             {
-                if (!agent.Genome.Graph.TryGetValue(id, out var outgoing))
+                if (agent.Genome.Graph[id] is not { } outgoing)
                 {
                     return;
                 }
                 
                 foreach (var gene in outgoing)
                 {
-                    neuronValues[gene.Target] += value * gene.GetWeight();
+                    neuronValues[gene.Target] += value * gene.Weight;
                 }
             }
         }

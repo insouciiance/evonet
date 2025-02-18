@@ -6,13 +6,13 @@ public class MoveDownOutputNeuron : IOutputNeuron
 
     public void Activate(World world, Agent agent, float value)
     {
-        var pos = world.GetAgentPosition(agent);
+        ref var pos = ref world.GetAgentPositionRef(agent);
 
         if (pos.Y == world.Height - 1)
         {
             return;
         }
         
-        world.SetAgentPosition(agent, (pos.X, pos.Y + 1));
+        pos.Y += 1;
     }
 }

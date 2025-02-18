@@ -16,16 +16,14 @@ public class DefaultWorldGenerator : IWorldGenerator
         {
             Width = 128,
             Height = 128,
-            Brain = new()
-            {
-                InputNeurons = NeuronHelper.InputNeurons,
-                InternalNeurons = new Dictionary<byte, InternalNeuron>()
+            Brain = new(
+                NeuronHelper.InputNeurons,
+                new Dictionary<byte, InternalNeuron>()
                 {
                     [1] = new(),
                     [2] = new()
                 }.ToFrozenDictionary(),
-                OutputNeurons = NeuronHelper.OutputNeurons,
-            }
+                NeuronHelper.OutputNeurons)
         };
 
         var agents = GenerateAgents(world);
@@ -85,7 +83,7 @@ public class DefaultWorldGenerator : IWorldGenerator
                 {
                     Source = world.Brain.GetNeuronId(RandomSourceNeuron()),
                     Target = world.Brain.GetNeuronId(RandomTargetNeuron()),
-                    Weight = RandomWeight()
+                    ShortWeight = RandomWeight()
                 };
             }
 
@@ -95,13 +93,13 @@ public class DefaultWorldGenerator : IWorldGenerator
                 {
                     Source = sourceIds.ElementAt(Random.Shared.Next(0, sourceIds.Count)),
                     Target = world.Brain.GetNeuronId(RandomTargetNeuron()),
-                    Weight = RandomWeight()
+                    ShortWeight = RandomWeight()
                 },
                 1 => new()
                 {
                     Source = world.Brain.GetNeuronId(RandomSourceNeuron()),
                     Target = targetIds.ElementAt(Random.Shared.Next(0, targetIds.Count)),
-                    Weight = RandomWeight()
+                    ShortWeight = RandomWeight()
                 }
             };
 
