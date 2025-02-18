@@ -2,5 +2,7 @@
 
 public interface IOutputNeuron : INeuron
 {
-    void Process(World world, Agent agent, float value);
+    bool ShouldActivate(float value);
+    
+    void Activate(World world, Agent agent, float value);
 }

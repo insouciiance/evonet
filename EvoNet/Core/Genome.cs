@@ -5,23 +5,34 @@ namespace EvoNet.Core;
 
 public class Genome
 {
+    private Dictionary<byte, List<Gene>>? _graph;
+
+    private byte[]? _orderedNeurons;
+    
     public readonly Gene[] Genes;
 
-    public readonly Dictionary<byte, List<Gene>> Graph;
-    
-    public readonly byte[] OrderedNeurons;
+    public Dictionary<byte, List<Gene>> Graph
+    {
+        get
+        {
+            _graph ??= InitializeGraph(Genes);
+            return _graph;
+        }
+    }
+
+    public byte[] OrderedNeurons
+    {
+        get
+        {
+            _orderedNeurons ??= InitializeOrderedNeurons(Genes, Graph);
+            return _orderedNeurons;
+        }
+    }
 
     public Genome(Gene[] genes)
     {
         Genes = genes;
 
-        Graph = InitializeGraph(Genes);
-        
-        Span<byte> orderedNeurons = stackalloc byte[Genes.Length * 2];
-        
-        int neuronsCount = TopologicalSorting.Sort(Genes, Graph, orderedNeurons);
-        
-        OrderedNeurons = orderedNeurons[..neuronsCount].ToArray();
     }
     
     private static Dictionary<byte, List<Gene>> InitializeGraph(Gene[] genes)
@@ -41,5 +52,14 @@ public class Genome
         }
 
         return graph;
+    }
+
+    private static byte[] InitializeOrderedNeurons(Gene[] genes, Dictionary<byte, List<Gene>> graph)
+    {
+        Span<byte> orderedNeurons = stackalloc byte[genes.Length * 2];
+        
+        int neuronsCount = TopologicalSorting.Sort(genes, graph, orderedNeurons);
+        
+        return orderedNeurons[..neuronsCount].ToArray();
     }
 }

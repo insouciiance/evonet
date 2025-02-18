@@ -1,73 +1,38 @@
-﻿using System.Runtime.InteropServices;
-using EvoNet.Core.Neurons;
-using EvoNet.Core.Neurons.Input;
-using EvoNet.Core.Neurons.Output;
+﻿using Vector2I = (int X, int Y);
 
 namespace EvoNet.Core;
 
 public class World
 {
+    private readonly Dictionary<Agent, Vector2I> _agentPositions = [];
+    
     public int Width { get; init; }
     
     public int Height { get; init; }
     
-    public Agent[] Agents { get; init; }
-    
     public Brain Brain { get; init; }
+    
+    public Agent[] Agents { get; private set; }
 
-    public void MoveNext()
+    public void SetAgents(Agent[] agents)
     {
+        _agentPositions.Clear();
+        
+        Agents = agents;
+
         foreach (var agent in Agents)
         {
-            ProcessAgent(agent);
+            _agentPositions[agent] = (Random.Shared.Next(Width), Random.Shared.Next(Height));
         }
     }
 
-    private void ProcessAgent(Agent agent)
+    public Vector2I GetAgentPosition(Agent agent)
     {
-        Dictionary<byte, float> neuronValues = [];
-        
-        foreach (byte id in agent.Genome.OrderedNeurons)
-        {
-            var neuron = Brain.GetNeuron(id);
-            ProcessNeuron(id, neuron);
-        }
+        return _agentPositions[agent];
+    }
 
-        void ProcessNeuron(byte id, INeuron neuron)
-        {
-            if (neuron is IInputNeuron inputNeuron)
-            {
-                float value = inputNeuron.Process(this, agent);
-                neuronValues[id] = value;
-
-                PropagateValue(value);
-                
-                return;
-            }
-
-            if (neuron is InternalNeuron)
-            {
-                float value = neuronValues[id];
-                value = MathF.Tanh(value);
-                
-                PropagateValue(value);
-                
-                return;
-            }
-
-            if (neuron is IOutputNeuron outputNeuron)
-            {
-                float value = neuronValues[id];
-                outputNeuron.Process(this, agent, value);
-            }
-
-            void PropagateValue(float value)
-            {
-                foreach (var gene in agent.Genome.Graph[id])
-                {
-                    neuronValues[gene.Target] += value * gene.GetWeight();
-                }
-            }
-        }
+    public void SetAgentPosition(Agent agent, Vector2I position)
+    {
+        _agentPositions[agent] = position;
     }
 }

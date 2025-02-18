@@ -11,8 +11,13 @@ public static class TopologicalSorting
 
         foreach (var gene in genes)
         {
-            ref var entry = ref CollectionsMarshal.GetValueRefOrAddDefault(inDegree, gene.Target, out _);
-            entry++;
+            inDegree[gene.Source] = 0;
+            inDegree[gene.Target] = 0;
+        }
+
+        foreach (var gene in genes)
+        {
+            inDegree[gene.Target]++;
         }
         
         Queue<byte> queue = [];
