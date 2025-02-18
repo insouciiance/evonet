@@ -1,11 +1,12 @@
+using System.Runtime.CompilerServices;
+
 namespace EvoNet.Utils;
 
 public static class MathHelper
 {
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static float Tanh(float x)
     {
-        var t = x * (27 + x * x) / (27 + 9 * x * x);
-        t = Math.Clamp(t, -1, 1);
-        return t;
+        return x * (27 + x * x) / (27 + 9 * x * x);
     }
 }

@@ -11,11 +11,11 @@ public struct Gene
     
     public byte Target;
 
+    public float Weight;
+
     public short ShortWeight
     {
         get => (short)(Weight * WEIGHT_COEFFICIENT);
         set => Weight = value / WEIGHT_COEFFICIENT;
     }
-
-    public float Weight;
 }
