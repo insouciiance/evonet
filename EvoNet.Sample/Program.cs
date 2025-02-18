@@ -1,4 +1,5 @@
 ﻿using EvoNet.Generation;
+using EvoNet.Sample;
 using EvoNet.Selection;
 using EvoNet.Selection.Crossovers;
 using EvoNet.Selection.Mutations;
@@ -20,7 +21,7 @@ NaturalSelection selection = new()
 
 SimulationConfig configuration = new()
 {
-    GenerationCount = 1000,
+    GenerationCount = 100,
     StepsPerGeneration = 100
 };
 
@@ -29,6 +30,12 @@ SimulationRunner runner = new()
     World = worldGenerator.Generate(),
     NaturalSelection = selection,
     Configuration = configuration
+};
+
+runner.StepFinished += (world, genIndex, stepIndex) =>
+{
+    Directory.CreateDirectory($"Gen_{genIndex}");
+    BitmapHelper.DumpToBitmap(world, $"Gen_{genIndex}/Step_{stepIndex}_{world.Agents.Length}Agents.png");
 };
 
 runner.Run();

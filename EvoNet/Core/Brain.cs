@@ -37,7 +37,7 @@ public class Brain
     {
         byte neuronId = (byte)(id & NEURON_ID_MASK);
 
-        return (id & ~NEURON_ID_MASK) switch
+        return ((id & ~NEURON_ID_MASK) >> 6) switch
         {
             INPUT_NEURON_PREFIX => InputNeurons[neuronId],
             INTERNAL_NEURON_PREFIX => InternalNeurons[neuronId],

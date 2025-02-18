@@ -8,29 +8,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="92d5d3e5-292d-4439-bc8f-542b869c1888" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/EvoNet/Core/Neurons/Input/HorizontalPositionInputNeuron.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EvoNet/Core/Neurons/Input/VerticalPositionInputNeuron.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EvoNet/Core/Neurons/Output/MoveDownOutputNeuron.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EvoNet/Core/Neurons/Output/MoveLeftOutputNeuron.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EvoNet/Core/Neurons/Output/MoveRightOutputNeuron.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EvoNet/Core/Neurons/Output/MoveUpOutputNeuron.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EvoNet/Generation/DefaultWorldGenerator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EvoNet/Generation/IWorldGenerator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EvoNet/Selection/Crossovers/DefaultCrossover.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EvoNet/Selection/Crossovers/ICrossover.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EvoNet/Selection/Mutations/DefaultMutation.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EvoNet/Selection/Mutations/IMutation.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EvoNet/Selection/NaturalSelection.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EvoNet/Selection/Selectors/DefaultSelector.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EvoNet/Selection/Selectors/ISelector.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EvoNet/Simulation/SimulationConfig.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EvoNet/Simulation/SimulationRunner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EvoNet.sln" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet.sln" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EvoNet.Sample/BitmapHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.EvoNet/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EvoNet/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EvoNet.Sample/EvoNet.Sample.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet.Sample/EvoNet.Sample.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EvoNet.Sample/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet.Sample/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EvoNet/Core/Brain.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet/Core/Brain.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EvoNet/Core/Genome.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet/Core/Genome.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EvoNet/Core/Neurons/NeuronHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet/Core/Neurons/NeuronHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EvoNet/Core/Neurons/Output/IOutputNeuron.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet/Core/Neurons/Output/IOutputNeuron.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EvoNet/Core/World.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet/Core/World.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EvoNet/Generation/DefaultWorldGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet/Generation/DefaultWorldGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EvoNet/Simulation/SimulationRunner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet/Simulation/SimulationRunner.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EvoNet/Utils/TopologicalSorting.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet/Utils/TopologicalSorting.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,6 +29,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c7102cd0ffb8973777e61b1942c3fffac7e14016a511d055c3adf73ff91748/ThrowHelper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e5d623ea960f2c3c9fda144954d339f8d4cd3dad6dd8bd4ab96093a010ab/Dictionary.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f21c449a23599e8691982940b5f094625d3f2924e0ae2daef346eb42831b3/Random.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -104,7 +89,7 @@
       <updated>1739745556523</updated>
       <workItem from="1739745558576" duration="9475000" />
       <workItem from="1739834877550" duration="27000" />
-      <workItem from="1739834954733" duration="5014000" />
+      <workItem from="1739834954733" duration="8687000" />
     </task>
     <servers />
   </component>
@@ -114,63 +99,5 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/EvoNet.Sample/Program.cs</url>
-          <line>33</line>
-          <properties documentPath="C:\Users\nikkv\source\repos\EvoNet\EvoNet.Sample\Program.cs" containingFunctionPresentation="">
-            <startOffsets>
-              <option value="676" />
-            </startOffsets>
-            <endOffsets>
-              <option value="689" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/EvoNet/Core/Genome.cs</url>
-          <line>17</line>
-          <properties documentPath="C:\Users\nikkv\source\repos\EvoNet\EvoNet\Core\Genome.cs" containingFunctionPresentation="Property 'Graph'">
-            <startOffsets>
-              <option value="319" />
-            </startOffsets>
-            <endOffsets>
-              <option value="353" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/EvoNet/Core/Genome.cs</url>
-          <line>26</line>
-          <properties documentPath="C:\Users\nikkv\source\repos\EvoNet\EvoNet\Core\Genome.cs" containingFunctionPresentation="Property 'OrderedNeurons'">
-            <startOffsets>
-              <option value="471" />
-            </startOffsets>
-            <endOffsets>
-              <option value="530" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/EvoNet/Utils/TopologicalSorting.cs</url>
-          <line>9</line>
-          <properties documentPath="C:\Users\nikkv\source\repos\EvoNet\EvoNet\Utils\TopologicalSorting.cs" containingFunctionPresentation="Method 'Sort'">
-            <startOffsets>
-              <option value="234" />
-            </startOffsets>
-            <endOffsets>
-              <option value="270" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

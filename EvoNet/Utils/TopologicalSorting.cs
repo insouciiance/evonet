@@ -37,7 +37,12 @@ public static class TopologicalSorting
             
             output[outputIndex++] = neuron;
 
-            foreach (var gene in graph[neuron])
+            if (!graph.TryGetValue(neuron, out var outgoing))
+            {
+                continue;
+            }
+            
+            foreach (var gene in outgoing)
             {
                 ref int degree = ref CollectionsMarshal.GetValueRefOrNullRef(inDegree, gene.Target);
                 degree--;

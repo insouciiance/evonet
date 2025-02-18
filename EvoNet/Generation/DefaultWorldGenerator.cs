@@ -28,39 +28,89 @@ public class DefaultWorldGenerator : IWorldGenerator
             }
         };
 
-        Agent[] agents = new Agent[PopulationSize];
-        
-        for (int i = 0; i < PopulationSize; i++)
-        {
-            Gene[] genes = new Gene[GeneCount];
-
-            for (int j = 0; j < GeneCount; j++)
-            {
-                var source = RandomSourceNeuron();
-                var target = RandomTargetNeuron();
-                
-                Gene gene = new()
-                {
-                    Source = world.Brain.GetNeuronId(source),
-                    Target = world.Brain.GetNeuronId(target),
-                    Weight = (short)Random.Shared.Next(short.MinValue, short.MaxValue + 1),
-                };
-                
-                genes[j] = gene;
-            }
-
-            Agent agent = new()
-            {
-                Genome = new(genes)
-            };
-            
-            agents[i] = agent;
-        }
+        var agents = GenerateAgents(world);
         
         world.SetAgents(agents);
 
         return world;
+    }
 
+    private Agent[] GenerateAgents(World world)
+    {
+        Agent[] agents = new Agent[PopulationSize];
+        
+        for (int i = 0; i < PopulationSize; i++)
+        {
+            var agent = GenerateAgent(world);
+            agents[i] = agent;
+        }
+
+        return agents;
+    }
+
+    private Agent GenerateAgent(World world)
+    {
+        HashSet<byte> sourceIds = [];
+        HashSet<byte> targetIds = [];
+
+        Gene[] genes = new Gene[GeneCount];
+
+        for (int j = 0; j < GeneCount; j++)
+        {
+            Gene gene;
+
+            do
+            {
+                gene = GenerateGene();
+            } while (gene.Source >= gene.Target);
+            
+            sourceIds.Add(gene.Source);
+            targetIds.Add(gene.Target);
+            
+            genes[j] = gene;
+        }
+
+        Agent agent = new()
+        {
+            Genome = new(genes)
+        };
+
+        return agent;
+
+        Gene GenerateGene()
+        {
+            if (sourceIds.Count == 0 && targetIds.Count == 0)
+            {
+                return new()
+                {
+                    Source = world.Brain.GetNeuronId(RandomSourceNeuron()),
+                    Target = world.Brain.GetNeuronId(RandomTargetNeuron()),
+                    Weight = RandomWeight()
+                };
+            }
+
+            return Random.Shared.Next(0, 2) switch
+            {
+                0 => new()
+                {
+                    Source = sourceIds.ElementAt(Random.Shared.Next(0, sourceIds.Count)),
+                    Target = world.Brain.GetNeuronId(RandomTargetNeuron()),
+                    Weight = RandomWeight()
+                },
+                1 => new()
+                {
+                    Source = world.Brain.GetNeuronId(RandomSourceNeuron()),
+                    Target = targetIds.ElementAt(Random.Shared.Next(0, targetIds.Count)),
+                    Weight = RandomWeight()
+                }
+            };
+
+            short RandomWeight()
+            {
+                return (short)Random.Shared.Next(short.MinValue, short.MaxValue + 1);
+            }
+        }
+        
         INeuron RandomSourceNeuron()
         {
             return Random.Shared.NextSingle() switch

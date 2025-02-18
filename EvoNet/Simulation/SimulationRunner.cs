@@ -14,9 +14,9 @@ public class SimulationRunner
     
     public SimulationConfig Configuration { get; init; }
 
-    public event Action<World>? StepFinished;
+    public event Action<World, int, int>? StepFinished;
     
-    public event Action<World>? GenerationFinished;
+    public event Action<World, int>? GenerationFinished;
 
     public void Run()
     {
@@ -25,10 +25,10 @@ public class SimulationRunner
             for (int j = 0; j < Configuration.StepsPerGeneration; j++)
             {
                 MoveNext();
-                StepFinished?.Invoke(World);
+                StepFinished?.Invoke(World, i, j);
             }
             
-            GenerationFinished?.Invoke(World);
+            GenerationFinished?.Invoke(World, i);
             NaturalSelection.RunOnce(World);
         }
     }
@@ -44,6 +44,11 @@ public class SimulationRunner
     private void ProcessAgent(Agent agent)
     {
         Dictionary<byte, float> neuronValues = [];
+
+        foreach (var id in agent.Genome.OrderedNeurons)
+        {
+            neuronValues[id] = 0;
+        }
         
         foreach (byte id in agent.Genome.OrderedNeurons)
         {
@@ -86,7 +91,12 @@ public class SimulationRunner
 
             void PropagateValue(float value)
             {
-                foreach (var gene in agent.Genome.Graph[id])
+                if (!agent.Genome.Graph.TryGetValue(id, out var outgoing))
+                {
+                    return;
+                }
+                
+                foreach (var gene in outgoing)
                 {
                     neuronValues[gene.Target] += value * gene.GetWeight();
                 }
