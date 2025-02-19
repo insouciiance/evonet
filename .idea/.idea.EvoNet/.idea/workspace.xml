@@ -8,9 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="92d5d3e5-292d-4439-bc8f-542b869c1888" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EvoNet/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EvoNet/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EvoNet.Sample/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet.Sample/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EvoNet/Core/Genome.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EvoNet/Core/Genome.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +92,7 @@
       <workItem from="1739834877550" duration="27000" />
       <workItem from="1739834954733" duration="8687000" />
       <workItem from="1739910559451" duration="92000" />
-      <workItem from="1739910658823" duration="12060000" />
+      <workItem from="1739910658823" duration="12095000" />
     </task>
     <servers />
   </component>
