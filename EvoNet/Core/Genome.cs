@@ -70,12 +70,12 @@ public class Genome : IDisposable
 
     private static byte[] InitializeOrderedNeurons(Gene[] genes, List<Gene>[] graph, out int neuronsCount)
     {
-        Span<byte> orderedNeurons = stackalloc byte[genes.Length * 2];
+        Span<byte> orderedNeurons = stackalloc byte[byte.MaxValue];
         
         neuronsCount = TopologicalSorting.Sort(genes, graph, orderedNeurons);
         
         var resultArray = ArrayPool<byte>.Shared.Rent(neuronsCount);
-        orderedNeurons.CopyTo(resultArray);
+        orderedNeurons[..neuronsCount].CopyTo(resultArray);
         return resultArray;
     }
 }
