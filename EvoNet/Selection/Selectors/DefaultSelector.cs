@@ -4,8 +4,8 @@ namespace EvoNet.Selection.Selectors;
 
 public class DefaultSelector : ISelector
 {
-    public bool Select(Agent agent, World world)
+    public bool Select(WorldAgent agent, World world)
     {
-        return world.GetAgentPosition(agent).X >= world.Width / 2;
+        return agent.X >= world.Width / 2;
     }
 }

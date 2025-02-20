@@ -4,15 +4,13 @@ public class MoveDownOutputNeuron : IOutputNeuron
 {
     public bool ShouldActivate(float value) => value >= 0;
 
-    public void Activate(World world, Agent agent, float value)
+    public void Activate(World world, WorldAgent agent, float value)
     {
-        ref var pos = ref world.GetAgentPositionRef(agent);
-
-        if (pos.Y == world.Height - 1)
+        if (agent.Y == world.Height - 1)
         {
             return;
         }
         
-        pos.Y += 1;
+        agent.Y += 1;
     }
 }

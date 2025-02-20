@@ -13,8 +13,7 @@ public static class BitmapHelper
 
         foreach (var agent in world.Agents)
         {
-            var position = world.GetAgentPosition(agent);
-            bitmap.SetPixel(position.X, position.Y, Color.Red);
+            bitmap.SetPixel(agent.X, agent.Y, Color.Red);
         }
         
         bitmap.Save(fileName);

@@ -1,44 +1,29 @@
-﻿using System.Runtime.InteropServices;
-using Vector2I = (int X, int Y);
-
-namespace EvoNet.Core;
+﻿namespace EvoNet.Core;
 
 public class World
 {
-    private readonly Dictionary<Agent, Vector2I> _agentPositions = [];
-    
     public int Width { get; init; }
     
     public int Height { get; init; }
     
     public Brain Brain { get; init; }
     
-    public Agent[] Agents { get; private set; }
+    public WorldAgent[] Agents { get; private set; }
 
     public void SetAgents(Agent[] agents)
     {
-        _agentPositions.Clear();
+        Agents = new WorldAgent[agents.Length];
         
-        Agents = agents;
-
-        foreach (var agent in Agents)
+        for (int i = 0; i < Agents.Length; i++)
         {
-            _agentPositions[agent] = (Random.Shared.Next(Width), Random.Shared.Next(Height));
+            var agent = agents[i];
+            
+            Agents[i] = new()
+            {
+                Agent = agent,
+                X = Random.Shared.Next(Width),
+                Y = Random.Shared.Next(Height)
+            };
         }
-    }
-
-    public ref Vector2I GetAgentPositionRef(Agent agent)
-    {
-        return ref CollectionsMarshal.GetValueRefOrNullRef(_agentPositions, agent);
-    }
-    
-    public Vector2I GetAgentPosition(Agent agent)
-    {
-        return _agentPositions[agent];
-    }
-
-    public void SetAgentPosition(Agent agent, Vector2I position)
-    {
-        _agentPositions[agent] = position;
     }
 }

@@ -34,14 +34,14 @@ SimulationRunner runner = new()
 
 runner.StepFinished += (world, genIndex, stepIndex) =>
 {
-};    // Directory.CreateDirectory($"Gen_{genIndex}");
-      // BitmapHelper.DumpToBitmap(world, $"Gen_{genIndex}/Step_{stepIndex}_{world.Agents.Length}Agents.png");
-
+    Directory.CreateDirectory($"Gen_{genIndex}");
+    BitmapHelper.DumpToBitmap(world, $"Gen_{genIndex}/Step_{stepIndex}_{world.Agents.Length}Agents.png");
+};
 
 runner.GenerationFinished += (world, i) =>
 {
     Console.WriteLine(i);
 };
-    
+
 
 runner.Run();

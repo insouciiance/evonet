@@ -23,7 +23,7 @@ public class NaturalSelection
 
         foreach (var agent in world.Agents)
         {
-            agent.Dispose();
+            agent.Agent.Dispose();
         }
         
         world.SetAgents(children.ToArray());
@@ -37,7 +37,7 @@ public class NaturalSelection
         {
             if (Selector.Select(agent, world))
             {
-                selectedAgents.Add(agent);
+                selectedAgents.Add(agent.Agent);
             }
         }
 

@@ -2,5 +2,5 @@
 
 public interface IInputNeuron : INeuron
 {
-    float Process(World world, Agent agent);
+    float Process(World world, WorldAgent agent);
 }

@@ -2,9 +2,8 @@ namespace EvoNet.Core.Neurons.Input;
 
 public class HorizontalPositionInputNeuron : IInputNeuron
 {
-    public float Process(World world, Agent agent)
+    public float Process(World world, WorldAgent agent)
     {
-        var pos = world.GetAgentPosition(agent);
-        return (float)pos.X / world.Width;
+        return (float)agent.X / world.Width;
     }
 }

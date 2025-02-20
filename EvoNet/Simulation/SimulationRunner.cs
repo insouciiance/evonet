@@ -42,11 +42,11 @@ public class SimulationRunner
         }
     }
 
-    private void ProcessAgent(Agent agent)
+    private void ProcessAgent(WorldAgent agent)
     {
         Span<float> neuronValues = stackalloc float[byte.MaxValue];
         
-        foreach (byte id in agent.Genome.OrderedNeurons)
+        foreach (byte id in agent.Agent.Genome.OrderedNeurons)
         {
             var neuron = World.Brain.GetNeuron(id);
             ProcessNeuron(id, neuron, neuronValues);
@@ -93,7 +93,7 @@ public class SimulationRunner
 
             void PropagateValue(float value, Span<float> neuronValues)
             {
-                if (agent.Genome.Graph[id] is not { } outgoing)
+                if (agent.Agent.Genome.Graph[id] is not { } outgoing)
                 {
                     return;
                 }
